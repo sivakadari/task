@@ -1,0 +1,34 @@
+<div class="Main">
+  <div class="input">
+    <label style="margin-top: 15px;">Select City: &nbsp;</label> <input style="margin-top: 15px;" type="text"
+      [(ngModel)]="cityName">
+    <button type="button" class="btn-primary" (click)="getCityWeather()">Search</button>
+  </div>
+  <div class="Content">
+    <div class="col-md-8 offset-md-2 card">
+
+      <div *ngIf="WeatherData.isDay" class="weatherWidgetRow">
+        <i class="fa fa-sun-o fa-3x sun" aria-hidden="true"></i>
+      </div>
+      <div *ngIf="!WeatherData.isDay" class="weatherWidgetRow">
+
+        <i class="fa fa-3x fa-moon-o moon" aria-hidden="true"></i>
+      </div>
+      <div class="weatherWidgetRow cloudDiv">
+        <i class="fa fa-cloud fa-3x cloud" aria-hidden="true"></i>
+      </div>
+      <div *ngIf="getWeatherResults">
+        <h3>Temperature: {{normalTemp}} <span>&#8451;</span></h3>
+
+        <h3>City: {{getWeatherResults.name}}</h3>
+        <h6>Humidity: {{getWeatherResults.main.humidity}} %</h6>
+        <h6>Date and Time: {{time}}</h6>
+
+      </div>
+      <div *ngIf="!getWeatherResults">
+        <span *ngIf="cityErrorMessage">Weather not found with the given city name : <h6 style="color: red;">
+            {{cityErrorMessage}}</h6></span>
+      </div>
+    </div>
+  </div>
+</div>
